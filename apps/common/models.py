@@ -125,7 +125,7 @@ class TarifPricing(BaseModel):
     
     
 class TarifService(BaseModel):
-    tarif = models.ForeignKey(Tarif, verbose_name="Тариф", on_delete=models.CASCADE)
+    tarif = models.ForeignKey(Tarif, verbose_name="Тариф", on_delete=models.CASCADE, related_name="services")
     service = models.ForeignKey(Service, verbose_name="Услуга", on_delete=models.CASCADE)
     order = models.PositiveIntegerField(verbose_name="Порядок", default=1)
     
