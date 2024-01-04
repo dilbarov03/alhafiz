@@ -27,3 +27,5 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = ["*"]
 
 
+MEDIA_ROOT = "/home/alhafizu/alhafiz.uz/django/media" 
+STATIC_ROOT = "/home/alhafizu/alhafiz.uz/django/static"
