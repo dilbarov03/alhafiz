@@ -1,5 +1,7 @@
 from rest_framework import serializers
 
+from apps.common.utils import send_telegram_message
+
 from .models import News, Gallery, Service, Hotel, Transport, TarifPricing, TarifService, Tarif, Application
 
 
@@ -71,3 +73,23 @@ class ApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application
         fields = ("id", "tarif", "people_count", "name", "phone", "month")
+        
+    def create(self, validated_data):
+        text = (
+            "📝 <b>Новая заявка</b>\n\n"
+            "👤 <b>Имя:</b> {name}\n"
+            "📞 <b>Номер:</b> {phone}\n"
+            "🗓️ <b>Месяц:</b> {month}\n"
+            "💼 <b>Тариф:</b> {tarif}\n"
+            "👥 <b>Количество людей:</b> {people_count}"
+        ).format(
+            name=validated_data["name"],
+            phone=validated_data["phone"],
+            month=validated_data["month"],
+            tarif=validated_data["tarif"].title,
+            people_count=validated_data["people_count"]
+        )
+
+
+        send_telegram_message(text)
+        return super().create(validated_data)
