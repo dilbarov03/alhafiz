@@ -11,3 +11,4 @@ django-modeltranslation
 Pillow
 requests
 django-ckeditor
+django-resized==1.0.2

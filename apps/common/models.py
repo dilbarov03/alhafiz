@@ -1,5 +1,6 @@
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
+from django_resized import ResizedImageField
 
 
 class BaseModel(models.Model):
@@ -13,7 +14,7 @@ class BaseModel(models.Model):
 class News(BaseModel):
     title = models.CharField(max_length=255, verbose_name="Заголовок")
     body = RichTextUploadingField(verbose_name="Текст")
-    image = models.ImageField(upload_to="news", verbose_name="Изображение")
+    image = ResizedImageField(upload_to="news", verbose_name="Изображение")
     
     def __str__(self):
         return self.title
@@ -100,6 +101,7 @@ class Tarif(BaseModel):
     Madinah_hotel = models.ForeignKey(Hotel, verbose_name="Отель в Медине", related_name="madinah_hotel", on_delete=models.SET_NULL, null=True)
     transport = models.ForeignKey(Transport, verbose_name="Транспорт", on_delete=models.SET_NULL, null=True)
     order = models.PositiveIntegerField(verbose_name="Порядок", default=1)
+    price = models.PositiveIntegerField(verbose_name="Цена", default=0)
     
     def __str__(self):
         return self.title
@@ -111,7 +113,8 @@ class Tarif(BaseModel):
         
 
 class TarifPricing(BaseModel):
-    tarif = models.ForeignKey(Tarif, verbose_name="Тариф", on_delete=models.CASCADE)
+    tarif = models.ForeignKey(Tarif, verbose_name="Тариф", on_delete=models.CASCADE,
+                              related_name="prices")
     people_count = models.PositiveIntegerField(verbose_name="Количество человек")
     price = models.PositiveIntegerField(verbose_name="Цена")
     order = models.PositiveIntegerField(verbose_name="Порядок", default=1)

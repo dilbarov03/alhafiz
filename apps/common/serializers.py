@@ -48,14 +48,14 @@ class TransportSerializer(serializers.ModelSerializer):
 class TarifPricingSerializer(serializers.ModelSerializer):
     class Meta:
         model = TarifPricing
-        fields = ("id", "title", "people_count", "price", "order")
+        fields = ("id", "people_count", "price", "order")
 
 
 class TarifListSerializer(serializers.ModelSerializer):
     services = TarifServiceSerializer(many=True)
     class Meta:
         model = Tarif
-        fields = ("id", "title", "start_time", "end_time", "services")
+        fields = ("id", "title", "start_time", "end_time", "services", "price")
 
 
 class TarifDetailSerializer(serializers.ModelSerializer):
@@ -63,11 +63,12 @@ class TarifDetailSerializer(serializers.ModelSerializer):
     Madinah_hotel = HotelSerializer()
     transport = TransportSerializer()
     services = TarifServiceSerializer(many=True)
+    prices = TarifPricingSerializer(many=True)
     
     class Meta:
         model = Tarif
         fields = ("id", "title", "body", "start_time", "end_time", "days_in_Makkah", "days_in_Madinah",
-                  "Makkah_hotel", "Madinah_hotel", "transport", "services")
+                  "Makkah_hotel", "Madinah_hotel", "transport", "services", "prices")
 
 
 class ApplicationSerializer(serializers.ModelSerializer):
