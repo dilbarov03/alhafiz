@@ -52,9 +52,10 @@ class TarifPricingSerializer(serializers.ModelSerializer):
 
 
 class TarifListSerializer(serializers.ModelSerializer):
+    services = TarifServiceSerializer(many=True)
     class Meta:
         model = Tarif
-        fields = ("id", "title", "start_time", "end_time")
+        fields = ("id", "title", "start_time", "end_time", "services")
 
 
 class TarifDetailSerializer(serializers.ModelSerializer):
