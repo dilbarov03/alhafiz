@@ -10,3 +10,4 @@ djangorestframework-simplejwt==5.3.0
 django-modeltranslation
 Pillow
 requests
+django-ckeditor

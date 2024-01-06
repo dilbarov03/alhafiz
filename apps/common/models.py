@@ -1,3 +1,4 @@
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 
 
@@ -11,7 +12,7 @@ class BaseModel(models.Model):
 
 class News(BaseModel):
     title = models.CharField(max_length=255, verbose_name="Заголовок")
-    body = models.TextField(verbose_name="Текст новости")
+    body = RichTextUploadingField(verbose_name="Текст")
     image = models.ImageField(upload_to="news", verbose_name="Изображение")
     
     def __str__(self):
