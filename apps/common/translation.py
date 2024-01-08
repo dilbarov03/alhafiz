@@ -1,5 +1,5 @@
 from modeltranslation.translator import TranslationOptions, register
-from .models import News, Service, Tarif, Transport
+from .models import News, Service, Slide, Tarif, Transport
 
 @register(News)
 class NewsTranslationOptions(TranslationOptions):
@@ -19,3 +19,8 @@ class TransportTranslationOptions(TranslationOptions):
 @register(Tarif)
 class TarifTranslationOptions(TranslationOptions):
     fields = ('title', 'body')
+
+
+@register(Slide)
+class SlideTranslationOptions(TranslationOptions):
+    fields = ('title', )

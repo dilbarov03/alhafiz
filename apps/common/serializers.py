@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from apps.common.utils import send_telegram_message
 
-from .models import News, Gallery, Service, Hotel, Transport, TarifPricing, TarifService, Tarif, Application
+from .models import News, Gallery, Service, Hotel, Slide, Transport, TarifPricing, TarifService, Tarif, Application
 
 
 class NewsSerializer(serializers.ModelSerializer):
@@ -95,3 +95,9 @@ class ApplicationSerializer(serializers.ModelSerializer):
 
         send_telegram_message(text)
         return super().create(validated_data)
+
+
+class SlideSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Slide
+        fields = ("id", "title", "image")

@@ -157,4 +157,17 @@ class Application(BaseModel):
         verbose_name = "Заявка"
         verbose_name_plural = "Заявки"
         ordering = ["-created_at"]
+
+
+class Slide(BaseModel):
+    title = models.CharField(max_length=255, verbose_name="Заголовок")
+    image = ResizedImageField(upload_to="slides", verbose_name="Изображение")
+    order = models.PositiveIntegerField(verbose_name="Порядок", default=1)
     
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = "Слайд"
+        verbose_name_plural = "Слайды"
+        ordering = ["order"]

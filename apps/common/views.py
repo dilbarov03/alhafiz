@@ -1,9 +1,9 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
 from django_filters.rest_framework import DjangoFilterBackend
 
-from apps.common.serializers import ApplicationSerializer, NewsSerializer, GallerySerializer, TarifDetailSerializer, TarifListSerializer
+from apps.common.serializers import ApplicationSerializer, NewsSerializer, GallerySerializer, SlideSerializer, TarifDetailSerializer, TarifListSerializer
 
-from .models import Application, News, Gallery, Tarif
+from .models import Application, News, Gallery, Slide, Tarif
 
 
 class NewsListView(ListAPIView):
@@ -39,3 +39,9 @@ class TarifDetailView(RetrieveAPIView):
 class ApplicationCreateView(CreateAPIView):
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
+
+
+class SlideListView(ListAPIView):
+    queryset = Slide.objects.all()
+    serializer_class = SlideSerializer
+    pagination_class = None

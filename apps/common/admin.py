@@ -1,7 +1,7 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 
-from .models import News, Gallery, Service, Hotel, Transport, Tarif, TarifPricing, TarifService, Application
+from .models import News, Gallery, Service, Hotel, Slide, Transport, Tarif, TarifPricing, TarifService, Application
 
 
 @admin.register(News)
@@ -62,3 +62,11 @@ class ApplicationAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone', 'created_at')
     list_filter = ('created_at', )
     search_fields = ('name', 'phone')
+
+
+@admin.register(Slide)
+class SlideAdmin(TranslationAdmin):
+    list_display = ('title', 'order')
+    list_editable = ('order', )
+    list_filter = ('created_at', )
+    search_fields = ('title', )

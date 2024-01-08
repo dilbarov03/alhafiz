@@ -1,7 +1,7 @@
 from django.urls import path
 
 
-from .views import ApplicationCreateView, NewsListView, NewsDetailView, GalleryView, TarifDetailView, TarifListView
+from .views import ApplicationCreateView, NewsListView, NewsDetailView, GalleryView, SlideListView, TarifDetailView, TarifListView
 
 
 urlpatterns = [
@@ -11,4 +11,5 @@ urlpatterns = [
     path("tarif/", TarifListView.as_view()),
     path("tarif/<int:pk>/", TarifDetailView.as_view()),
     path("application/", ApplicationCreateView.as_view()),
+    path("slides/", SlideListView.as_view()),
 ]
