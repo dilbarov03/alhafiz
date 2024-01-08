@@ -171,3 +171,20 @@ class Slide(BaseModel):
         verbose_name = "Слайд"
         verbose_name_plural = "Слайды"
         ordering = ["order"]
+
+
+class Contact(BaseModel):
+    phone_number = models.CharField(max_length=255, verbose_name="Номер телефона")
+    latitude = models.FloatField(verbose_name="Широта", blank=True, null=True)
+    longitude = models.FloatField(verbose_name="Долгота", blank=True, null=True)
+    order = models.PositiveIntegerField(verbose_name="Порядок", default=1)
+    
+    def __str__(self):
+        return self.phone_number
+    
+    class Meta:
+        verbose_name = "Контакт"
+        verbose_name_plural = "Контакты"
+        ordering = ["order"]
+    
+    
